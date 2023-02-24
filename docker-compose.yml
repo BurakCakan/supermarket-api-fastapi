@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:latest
+    restart: always
+    container_name: postgres_container
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=<write-your-own-user>
+      - POSTGRES_PASSWORD=<write-your-own-pass>
+      - POSTGRES_DB=<POSTGRES_SCHEMA>
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    container_name: fastapi_container
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+    environment:
+      - DATABASE_URL=postgresql://<POSTGRES_USER>:<POSTGRES_PASSWORD>@postgres:5432/<POSTGRES_SCHEMA>
+
+# please change </> parts above with related your postgresql credentials

@@ -1,0 +1,22 @@
+[project]
+name = "mypackage"
+version = "0.0.1"
+dependencies = [
+    "sqlalchemy",
+    "psycopg2-binary",
+    "uvicorn",
+    "fastapi",
+    "pytest",
+    "pydantic",
+    "httpx"
+]
+
+[project.scripts]
+api-supermarket = "api:app"
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+py-modules = []
